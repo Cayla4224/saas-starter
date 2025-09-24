@@ -7,7 +7,7 @@ export default function Profile() {
   const router = useRouter();
   const [name, setName] = useState(session?.user?.name || "");
   const [company, setCompany] = useState("");
-  const [about, setAbout] = useState("I am a Full Stack Developer with 5+ years of experience. I specialize in building scalable web applications and enjoy collaborating with teams to solve complex problems. I am passionate about learning new technologist, building, and designing products that make a difference. I believe in delivering high-quality solutions.");
+  const [about, setAbout] = useState("");
   const [contact, setContact] = useState("");
   const [profilePic, setProfilePic] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);

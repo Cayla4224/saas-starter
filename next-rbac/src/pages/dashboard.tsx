@@ -38,6 +38,14 @@ export default function Dashboard() {
           <p className="text-lg text-gray-700 font-medium mb-4">
             Hello, <span className="font-bold text-blue-700">{session.user.email}</span>!
           </p>
+          {session.user.email === "admin@example.com" && (
+            <button
+              className="mb-4 px-6 py-2 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-900 transition"
+              onClick={() => router.push("/admin")}
+            >
+              Access Admin Page
+            </button>
+          )}
           {/* Types of full stack projects */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-blue-800 mb-2">Types of Full-Stack Projects You Can Create</h2>

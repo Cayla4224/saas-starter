@@ -18,7 +18,7 @@ function Navbar() {
           <Link href="/pricing" className="text-gray-700 hover:text-blue-600">Pricing</Link>
           <Link href="/about" className="text-gray-700 hover:text-blue-600">About</Link>
           <Link href="/contact" className="text-gray-700 hover:text-blue-600">Contact</Link>
-          <Link href="/admin" className="text-gray-700 hover:text-blue-600">Admin</Link>
+          {/* Admin tab removed */}
         </div>
       </div>
     </nav>

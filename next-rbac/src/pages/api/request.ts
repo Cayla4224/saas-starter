@@ -1,5 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -20,14 +23,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
 
   try {
+    // Save project request to database
+    await prisma.projectRequest.create({
+      data: {
+        projectType,
+        description,
+        userEmail,
+      },
+    });
+
+    // Send notification email
     await transporter.sendMail({
       from: process.env.MAILERSEND_FROM,
-  to: "developersmith1125@gmail.com",
+  to: "admin@example.com",
       subject: `New Project Request: ${projectType}`,
       text: `Project Type: ${projectType}\nDescription: ${description}\nSubmitted by: ${userEmail}`,
     });
     return res.status(200).json({ success: true });
   } catch (error) {
-    return res.status(500).json({ error: "Failed to send email" });
+    return res.status(500).json({ error: "Failed to send email or save request" });
   }
 }
